@@ -8,7 +8,7 @@
 ![效果图](image/popWindow.gif)
 
 **使用方法：**
-1，简便写法：
+1，简便写法
 ```java
 CustomPopWindow popWindow = new CustomPopWindow.PopupWindowBuilder(this)
                 .setView(R.layout.pop_layout1)//显示的布局，还可以通过设置一个View
