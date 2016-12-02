@@ -1,7 +1,18 @@
-##### 封装通用PopupWindow,CustomPopWindow,使用链式的方式配置并显示
+### 封装通用PopupWindow,CustomPopWindow,使用链式的方式配置并显示
 
 由于每次写PopupWindow都要写很多重复代码，因此简单的封装了一个CustomPopWindow.封装了PopupWindow 的一些常用API，使用Builder模式，就像写AlertDialog 一样，链式配置。
 
+
+###Usage
+
+Add the dependency to your build.gradle.
+
+
+```java
+dependencies {
+    compile 'com.example.zhouwei.library:library:1.0.0'
+}
+```
 
 **示例效果图：**
 
