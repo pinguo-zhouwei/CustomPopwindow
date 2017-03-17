@@ -1,5 +1,6 @@
 package com.example.zhouwei.library;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -8,6 +9,8 @@ import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 /**
@@ -16,7 +19,8 @@ import android.widget.PopupWindow;
  * Created by zhouwei on 16/11/28.
  */
 
-public class CustomPopWindow {
+public class CustomPopWindow implements PopupWindow.OnDismissListener{
+    private static final float DEFAULT_ALPHA = 0.7f;
     private Context mContext;
     private int mWidth;
     private int mHeight;
@@ -34,6 +38,15 @@ public class CustomPopWindow {
     private int mSoftInputMode = -1;
     private boolean mTouchable = true;//default is ture
     private View.OnTouchListener mOnTouchListener;
+
+    private Window mWindow;//当前Activity 的窗口
+    /**
+     * 弹出PopWindow 背景是否变暗，默认不会变暗。
+     */
+    private boolean mIsBackgroundDark = false;
+
+    private float mBackgroundDrakValue = 0;// 背景变暗的值，0 - 1
+
     private CustomPopWindow(Context context){
         mContext = context;
     }
@@ -124,6 +137,19 @@ public class CustomPopWindow {
             mContentView = LayoutInflater.from(mContext).inflate(mResLayoutId,null);
         }
 
+        // 2017.3.17 add
+        // 获取当前Activity的window
+        Activity activity = (Activity) mContentView.getContext();
+        if(activity!=null && mIsBackgroundDark){
+            //如果设置的值在0 - 1的范围内，则用设置的值，否则用默认值
+            final  float alpha = (mBackgroundDrakValue > 0 && mBackgroundDrakValue < 1) ? mBackgroundDrakValue : DEFAULT_ALPHA;
+            mWindow = activity.getWindow();
+            WindowManager.LayoutParams params = mWindow.getAttributes();
+            params.alpha = alpha;
+            mWindow.setAttributes(params);
+        }
+
+
         if(mWidth != 0 && mHeight!=0 ){
             mPopupWindow = new PopupWindow(mContentView,mWidth,mHeight);
         }else{
@@ -146,16 +172,31 @@ public class CustomPopWindow {
             mHeight = mPopupWindow.getContentView().getMeasuredHeight();
         }
 
+        // 添加dissmiss 监听
+        mPopupWindow.setOnDismissListener(this);
+
+
         mPopupWindow.update();
 
         return mPopupWindow;
+    }
+
+    @Override
+    public void onDismiss() {
+        dissmiss();
     }
 
     /**
      * 关闭popWindow
      */
     public void dissmiss(){
-        if(mPopupWindow!=null){
+        //如果设置了背景变暗，那么在dissmiss的时候需要还原
+        if(mWindow!=null){
+            WindowManager.LayoutParams params = mWindow.getAttributes();
+            params.alpha = 1.0f;
+            mWindow.setAttributes(params);
+        }
+        if(mPopupWindow!=null && mPopupWindow.isShowing()){
             mPopupWindow.dismiss();
         }
     }
@@ -244,6 +285,26 @@ public class CustomPopWindow {
 
         public PopupWindowBuilder setTouchIntercepter(View.OnTouchListener touchIntercepter){
             mCustomPopWindow.mOnTouchListener = touchIntercepter;
+            return this;
+        }
+
+        /**
+         * 设置背景变暗是否可用
+         * @param isDark
+         * @return
+         */
+        public PopupWindowBuilder enableBackgroundDark(boolean isDark){
+            mCustomPopWindow.mIsBackgroundDark = isDark;
+            return this;
+        }
+
+        /**
+         * 设置北京变暗的值
+         * @param darkValue
+         * @return
+         */
+        public PopupWindowBuilder setBgDarkAlpha(float darkValue){
+            mCustomPopWindow.mBackgroundDrakValue = darkValue;
             return this;
         }
 

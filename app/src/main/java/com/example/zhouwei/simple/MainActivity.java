@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showPopTop(){
       CustomPopWindow popWindow = new CustomPopWindow.PopupWindowBuilder(this)
               .setView(R.layout.pop_layout2)
+              .enableBackgroundDark(true)
+              .setBgDarkAlpha(0.9f)
               .create();
       popWindow .showAsDropDown(mButton2,0,  - (mButton2.getHeight() + popWindow.getHeight()));
       //popWindow.showAtLocation(mButton1, Gravity.NO_GRAVITY,0,0);
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //创建并显示popWindow
         mCustomPopWindow= new CustomPopWindow.PopupWindowBuilder(this)
                 .setView(contentView)
+                .enableBackgroundDark(true) //弹出popWindow时，背景是否变暗
                 .create()
                 .showAsDropDown(mButton3,0,20);
 
