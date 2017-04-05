@@ -2,11 +2,16 @@ package com.example.zhouwei.simple;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView mButton1,mButton2,mButton3,mButton4;
+    private TextView mButton1,mButton2,mButton3,mButton4,mButton5,mButton6;
     private CustomPopWindow mCustomPopWindow;
     private CustomPopWindow mListPopWindow;
+    private AppCompatSeekBar mAppCompatSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButton3.setOnClickListener(this);
         mButton4 = (TextView) findViewById(R.id.button4);
         mButton4.setOnClickListener(this);
+        mButton5 = (TextView) findViewById(R.id.button5);
+        mButton5.setOnClickListener(this);
+        mButton6 = (TextView) findViewById(R.id.button6);
+        mButton6.setOnClickListener(this);
+
+
+        mAppCompatSeekBar = (AppCompatSeekBar) findViewById(R.id.seek_bar);
+        mAppCompatSeekBar.setMax(100);
+        mAppCompatSeekBar.setProgress(100);
+        mAppCompatSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+               float alpha = seekBar.getProgress() * 1.0f / 100 ;
+                if(alpha < 0.2){
+                    alpha = 0.2f;
+                }
+               Window mWindow = getWindow();
+                WindowManager.LayoutParams params = mWindow.getAttributes();
+                params.alpha = alpha;
+                mWindow.setAttributes(params);
+                Log.e("zhouwei","progress:"+progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @Override
@@ -50,6 +89,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button4:
                 showPopListView();
                 break;
+            case R.id.button5:
+                showPopTopWithDarkBg();
+                break;
+            case R.id.button6:
+                useInAndOutAnim();
+                break;
         }
     }
 
@@ -65,11 +110,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showPopTop(){
       CustomPopWindow popWindow = new CustomPopWindow.PopupWindowBuilder(this)
               .setView(R.layout.pop_layout2)
-              .enableBackgroundDark(true)
-              .setBgDarkAlpha(0.9f)
               .create();
       popWindow .showAsDropDown(mButton2,0,  - (mButton2.getHeight() + popWindow.getHeight()));
       //popWindow.showAtLocation(mButton1, Gravity.NO_GRAVITY,0,0);
+    }
+
+    /**
+     * 显示PopupWindow 同时背景变暗
+     */
+    private void showPopTopWithDarkBg(){
+        View contentView = LayoutInflater.from(this).inflate(R.layout.pop_menu,null);
+        //处理popWindow 显示内容
+        handleLogic(contentView);
+        //创建并显示popWindow
+        mCustomPopWindow= new CustomPopWindow.PopupWindowBuilder(this)
+                .setView(contentView)
+                .enableBackgroundDark(true) //弹出popWindow时，背景是否变暗
+                .setBgDarkAlpha(0.7f) // 控制亮度
+                .create()
+                .showAsDropDown(mButton5,0,20);
+    }
+
+    private void useInAndOutAnim(){
+        CustomPopWindow popWindow = new CustomPopWindow.PopupWindowBuilder(this)
+                .setView(R.layout.pop_layout1)
+                .setFocusable(true)
+                .setOutsideTouchable(true)
+                .setAnimationStyle(R.style.CustomPopWindowStyle)
+                .create()
+                .showAsDropDown(mButton6,0,10);
     }
 
     private void showPopMenu(){
@@ -79,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //创建并显示popWindow
         mCustomPopWindow= new CustomPopWindow.PopupWindowBuilder(this)
                 .setView(contentView)
-                .enableBackgroundDark(true) //弹出popWindow时，背景是否变暗
                 .create()
                 .showAsDropDown(mButton3,0,20);
 

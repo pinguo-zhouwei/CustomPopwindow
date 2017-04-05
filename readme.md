@@ -19,6 +19,32 @@ dependencies {
 ![效果图](image/popWindow.gif)
 
 **使用方法：**
+
+更新日志：（添加弹出PopupWindow同时背景变暗的配置，添加配置动画）
+
+更新1:背景变暗配置示例：
+
+```java
+   //创建并显示popWindow
+ mCustomPopWindow= new CustomPopWindow.PopupWindowBuilder(this)
+                .setView(contentView)
+                .enableBackgroundDark(true) //弹出popWindow时，背景是否变暗
+                .setBgDarkAlpha(0.7f) // 控制亮度
+                .create()
+                .showAsDropDown(mButton5,0,20);
+```
+更新2:显示消失动画配置：
+
+```java
+ CustomPopWindow popWindow = new CustomPopWindow.PopupWindowBuilder(this)
+                .setView(R.layout.pop_layout1)
+                .setFocusable(true)
+                .setOutsideTouchable(true)
+                .setAnimationStyle(R.style.CustomPopWindowStyle) // 添加自定义显示和消失动画
+                .create()
+                .showAsDropDown(mButton1,0,10);
+```
+
 1，简便写法
 ```java
 CustomPopWindow popWindow = new CustomPopWindow.PopupWindowBuilder(this)
