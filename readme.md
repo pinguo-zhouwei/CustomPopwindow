@@ -21,7 +21,7 @@ dependencies {
 }
 ```
 
- **2.0.0 版本 代码托管到Jitpack, 需要如下依赖：**
+ **2.x 版本 代码托管到Jitpack, 需要如下依赖：**
  
 1. Add it in your root build.gradle ：
  ```java
