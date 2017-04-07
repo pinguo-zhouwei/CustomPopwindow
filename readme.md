@@ -2,8 +2,15 @@
 
 由于每次写PopupWindow都要写很多重复代码，因此简单的封装了一个CustomPopWindow.封装了PopupWindow 的一些常用API，使用Builder模式，就像写AlertDialog 一样，链式配置。
 
+### 相关博客
 
-###Usage
+1，[通用PopupWindow，几行代码搞定PopupWindow弹窗](http://www.jianshu.com/p/9304d553aa67)
+
+2, [通用PopupWindow，几行代码搞定PopupWindow弹窗（续）](http://www.jianshu.com/p/46d13fe78099)
+
+### Usage
+
+**由于 1.0.0 版本 是托管到 Jcenter的，添加如下依赖：**
 
 Add the dependency to your build.gradle.
 
@@ -11,6 +18,29 @@ Add the dependency to your build.gradle.
 ```java
 dependencies {
     compile 'com.example.zhouwei.library:library:1.0.0'
+}
+```
+
+ **2.0.0 版本 代码托管到Jitpack, 需要如下依赖：**
+ 
+1. Add it in your root build.gradle ：
+ ```java
+     
+ allprojects {
+     epositories {
+         ...
+         maven {
+             url 'https://jitpack.io'
+ 
+         }
+ 
+ }
+ ```
+ 
+2. Add the dependency
+```java
+dependencies {
+	compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.0.0'
 }
 ```
 
