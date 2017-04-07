@@ -1,12 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
 // This is the library version used when deploying the artifact
-version = "1.1.0"
+//version = //"2.0.0"
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.pinguo-zhouwei'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
-    resourcePrefix "customPop__"	//这个随便填
+  //  resourcePrefix "customPop__"	//这个随便填
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 24
@@ -33,10 +35,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-
+/*
 def siteUrl = 'https://github.com/pinguo-zhouwei/CustomPopwindow'      // 项目的主页
 def gitUrl = 'https://github.com/pinguo-zhouwei/CustomPopwindow.git'   // Git仓库的url
-group = "com.example.zhouwei.library"                                        // Maven Group ID for the artifact，一般填你唯一的包名
+group = "com.example.zhouwei"                                        // Maven Group ID for the artifact，一般填你唯一的包名
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -57,7 +59,7 @@ install {
                     developer {
                         id 'zhouwei'		//填写的一些基本信息
                         name 'JayZhou'
-                        email 'zhouweigmail@163.com'
+                        email 'zhouwei@gmail.com'
                     }
                 }
                 scm {
@@ -92,7 +94,7 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        userOrg = "weiyinshidai"
+        userOrg = "android-org"
         repo = "maven"
         name = "CustomPopwindow"	//发布到JCenter上的项目名字
         websiteUrl = siteUrl
@@ -100,4 +102,4 @@ bintray {
         licenses = ["Apache-2.0"]
         publish = true
     }
-}
+}*/

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -127,6 +128,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setView(contentView)
                 .enableBackgroundDark(true) //弹出popWindow时，背景是否变暗
                 .setBgDarkAlpha(0.7f) // 控制亮度
+                .setOnDissmissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        Log.e("TAG","onDismiss");
+                    }
+                })
                 .create()
                 .showAsDropDown(mButton5,0,20);
     }
