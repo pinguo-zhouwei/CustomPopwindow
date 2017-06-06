@@ -314,7 +314,7 @@ public class CustomPopWindow implements PopupWindow.OnDismissListener{
         }
 
         /**
-         * 设置北京变暗的值
+         * 设置背景变暗的值
          * @param darkValue
          * @return
          */
