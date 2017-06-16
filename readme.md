@@ -175,6 +175,18 @@ private void showPopListView(){
     }
 ```
 
+### 联系方式
+ 简书:[http://www.jianshu.com/u/35167a70aa39](http://www.jianshu.com/u/35167a70aa39)
+ 
+ 掘金：[https://juejin.im/user/56949a9960b2e058a42be0ba](https://juejin.im/user/56949a9960b2e058a42be0ba)
+ 
+ 公众号：**Android技术杂货铺**
+ 
+ 欢迎关注我的公众号，第一时间获取我的博客更新提醒，以及更多有价值的原创Android干货文章、职场经验、面试技巧等等。
+ 长按下方二维码即可关注。
+
+ ![gzh.jpg](image/gzh.jpg)
+
 ### License
 
 ```
