@@ -26,6 +26,7 @@ public class CustomPopWindow implements PopupWindow.OnDismissListener{
     private int mHeight;
     private boolean mIsFocusable = true;
     private boolean mIsOutside = true;
+    private Drawable backGroud = new ColorDrawable(Color.TRANSPARENT);
     private int mResLayoutId = -1;
     private View mContentView;
     private PopupWindow mPopupWindow;
@@ -162,7 +163,7 @@ public class CustomPopWindow implements PopupWindow.OnDismissListener{
         apply(mPopupWindow);//设置一些属性
 
         mPopupWindow.setFocusable(mIsFocusable);
-        mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mPopupWindow.setBackgroundDrawable(backGroud);
         mPopupWindow.setOutsideTouchable(mIsOutside);
 
         if(mWidth == 0 || mHeight == 0){
@@ -292,6 +293,15 @@ public class CustomPopWindow implements PopupWindow.OnDismissListener{
             mCustomPopWindow.mOnTouchListener = touchIntercepter;
             return this;
         }
+        /**
+         * 设置背景图片/颜色
+         * @param backGroud
+         * @return
+         */
+        public PopupWindowBuilder setBackgroundDrawable(Drawable backGroud){
+            mCustomPopWindow.backGroud = backGroud;
+            return this;
+        }
 
         /**
          * 设置背景变暗是否可用
@@ -304,7 +314,7 @@ public class CustomPopWindow implements PopupWindow.OnDismissListener{
         }
 
         /**
-         * 设置北京变暗的值
+         * 设置背景变暗的值
          * @param darkValue
          * @return
          */
