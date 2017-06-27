@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         view.findViewById(R.id.close_pop).setOnClickListener(listener);
         mPopWindow = new CustomPopWindow.PopupWindowBuilder(this)
                 .setView(view)
-                .enableOutsideTouchableDissmiss(false)// 设置点击PopupWindow之外的地方，popWindow不取消
+                .enableOutsideTouchableDissmiss(false)// 设置点击PopupWindow之外的地方，popWindow不关闭，如果不设置这个属性或者为true，则关闭
                 .create();
 
         mPopWindow.showAsDropDown(mButton7,0,10);

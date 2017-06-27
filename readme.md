@@ -40,7 +40,7 @@ dependencies {
 2. Add the dependency
 ```java
 dependencies {
-	compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.0.0'
+	compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.0'
 }
 ```
 
@@ -48,9 +48,19 @@ dependencies {
 
 ![效果图](image/popWindow.gif)
 
-**使用方法：**
 
-更新日志：（添加弹出PopupWindow同时背景变暗的配置，添加配置动画）
+### 更新日志
+
+**v2.0.0：**
+
+* 1,添加弹出PopupWindow同时背景变暗的配置，添加配置动画
+
+**v2.1.0：**
+
+* 1, 兼容Android 6.0 、Android 7.0 点击PopupWindow 之外的区域可以控制 **显示/关闭popupWindow**
+* 2, 可以获取到PopupWindow实例
+### 使用方法
+
 
 更新1:背景变暗配置示例：
 
@@ -74,6 +84,19 @@ dependencies {
                 .create()
                 .showAsDropDown(mButton1,0,10);
 ```
+
+更新3:点击PopupWindow以外区域不让关闭(默认DisMiss)：
+
+```java
+ mPopWindow = new CustomPopWindow.PopupWindowBuilder(this)
+                .setView(view)
+                .enableOutsideTouchableDissmiss(false)// 设置点击PopupWindow之外的地方，popWindow不关闭，如果不设置这个属性或者为true，则关闭
+                .create();
+
+        mPopWindow.showAsDropDown(mButton7,0,10);
+```
+
+
 
 1，简便写法
 ```java
