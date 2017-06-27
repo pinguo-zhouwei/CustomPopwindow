@@ -87,6 +87,18 @@
             android:textColor="@android:color/white"
             android:padding="10dp"
             />
+        <TextView
+            android:id="@+id/button7"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:text="点击Pop外，不消失"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="#00BA90"
+            android:textColor="@android:color/white"
+            android:padding="10dp"
+            />
     </LinearLayout>
   <android.support.v7.widget.AppCompatSeekBar
        android:id="@+id/seek_bar"
