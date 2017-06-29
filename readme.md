@@ -8,6 +8,8 @@
 
 2, [通用PopupWindow，几行代码搞定PopupWindow弹窗（续）](http://www.jianshu.com/p/46d13fe78099)
 
+3, [从源码剖析PopupWindow 兼容Android 6.0以上版本点击外部不消失](http://www.jianshu.com/p/c9a83decb314)
+
 ### Usage
 
 **由于 1.0.0 版本 是托管到 Jcenter的，添加如下依赖：**
@@ -46,7 +48,7 @@ dependencies {
 
 **示例效果图：**
 
-![效果图](image/popWindow.gif)
+![效果图](image/pop_window.gif)
 
 
 ### 更新日志

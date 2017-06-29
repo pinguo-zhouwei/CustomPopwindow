@@ -7,7 +7,6 @@ import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -144,8 +143,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentview = inflater.inflate(R.layout.pop_layout1, null);
         final PopupWindow popupWindow = new PopupWindow(contentview, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //popupWindow
         popupWindow.setFocusable(true);
         popupWindow.setOutsideTouchable(false);
+        popupWindow.setBackgroundDrawable(null);
+
         popupWindow.getContentView().setFocusable(true); // 这个很重要
         popupWindow.getContentView().setFocusableInTouchMode(true);
         popupWindow.getContentView().setOnKeyListener(new View.OnKeyListener() {
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return false;
             }
         });
-        popupWindow.showAtLocation(mButton1,  Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+        popupWindow.showAsDropDown(mButton1, 0, 10);
     }
 
     private void showPopTop(){
