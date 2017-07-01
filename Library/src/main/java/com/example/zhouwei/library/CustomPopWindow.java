@@ -154,6 +154,7 @@ public class CustomPopWindow implements PopupWindow.OnDismissListener{
             mWindow = activity.getWindow();
             WindowManager.LayoutParams params = mWindow.getAttributes();
             params.alpha = alpha;
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             mWindow.setAttributes(params);
         }
 
