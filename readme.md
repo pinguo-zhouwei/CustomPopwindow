@@ -42,7 +42,7 @@ dependencies {
 2. Add the dependency
 ```java
 dependencies {
-	compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.0'
+	compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
 }
 ```
 
